@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/static/stylemain.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+  <!-- materialIcons -->
+  <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet" />
+
+  <!-- google icons  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+      <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button" data-toggle="offcanvas"
+        onclick="navtoggler()" id="togglebtn">
+        <i class="fas fa-bars mobile-nav-toggle"></i>
+      </button>
+    </nav>
+
+    <div class="page-body-wrapper d-flex frame">
+      {% include "admin_temp/sidenav.html" %}
+      <!-- end of sidebar  -->
+      <style>
+        .dash {
+          margin-right: 6px;
+        }
+
+        td {
+          text-align: center;
+          vertical-align: middle;
+        }
+
+        th {
+          text-align: center;
+          vertical-align: middle;
+        }
+
+        .edit:active,
+        .edit:hover {
+          color: blue;
+        }
+
+        .del:active,
+        .del:hover {
+          color: red;
+        }
+
+        .ic {
+          font-size: 23px;
+          margin-bottom: 10px;
+          cursor: pointer;
+        }
+      </style>
+      <div class="main" id='main'>
+        <div class="content-wrapper">
+          <div class="card">
+            <div class="card-body">
+              <div class="heading d-flex align-items-center">
+                <h4 class="card-title">Voucher Code</h4>
+                <div class="ic ml-3"><i class="fas fa-plus-circle" class="material-icons pointer hover"  data-toggle="modal" data-target="#exampleModal" onclick="addjobcode()" ></i></div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>S.no</th>
+                          <th>Voucher Code</th>
+                          <th>Price</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for i in Vouchers %}
+                        <tr>
+                          <td>{{forloop.counter}} </td>
+                          <td> {{i.code}} </td>
+                          <td> {{i.price}} </td>
+                          <td> 
+                            {% if i.status == 1 %}
+                            Active
+                            {% endif %}
+                            {% if i.status == 0 %}
+                            Inactive
+                            {% endif %}
+                            
+                          </td>
+                          <td>
+                            <i style=" font-size: 25px;" class="material-icons icon-blue pointer" data-toggle="modal"
+                              data-target="#editexampleModal"
+                              onclick="editvouchercode('{{i.id}}','{{i.code}}','{{i.price}}')">mode_edit_outline</i>
+                              <!-- <i style=" font-size: 25px;padding-left:25px;" class="material-icons icon-red pointer"
+                              data-toggle="modal" data-target="#deleteexampleModal"
+                              onclick="deletevouchercode('{{i.id}}')">delete_sweep</i> -->
+
+                          </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+
+                       
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   
+
+ <!-- -----addvouchercode model start- -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Voucher Code</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id='addvouchercode' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Code</label>
+              <input type="text" class="form-control" id="addcode" name="addcode" placeholder="Voucher Code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Price</label>
+              <input type="text" class="form-control" id="addprice" name="addprice" placeholder="Price">
+            </div> 
+            
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Save</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- -----addvouchercode model end- -->
+
+<!-- -----editjobcode model start- -->
+<div class="modal fade" id="editexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Employee Activation Code</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id='editvouchercode' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+          <input type="hidden" name="activationid" id="activationid">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="code">Code</label>
+              <input type="text" class="form-control" id="code" name="code"  placeholder="Voucher Code"  >
+            </div>
+            
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Price</label>
+              <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+            </div>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- -----editjobcode model end- -->
+
+<!-- Delete conformation Modal -->
+<div class="modal fade" id="deleteexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Caution</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id='deletejobcode' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+     <input type="hidden" name="deleteaid" id="deleteaid">
+    
+      This process can't be revert
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Are you sure</button>
+  </div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Delete conformation Modal -->
+<div class="modal fade" id="deleteexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Caution</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id='deletejobcode' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+         <input type="hidden" name="deleteaid" id="deleteaid">
+        
+          This process can't be revert
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Are you sure</button>
+      </div>
+    </form>
+    </div>
+  </div>
+  </div>
+  
+  
+  <!--delete conformation Modal End -->
+<!--delete conformation Modal End -->
+ 
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+ 
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"
+></script>
+<script>
+  
+  /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+    } else {
+    dropdownContent.style.display = "block";
+    }
+    });
+  }
+  
+
+  </script>
+  <script>
+
+    $("#addvouchercode").submit(function (e) {
+        
+      // preventing from page reload and default actions
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      // make POST ajax call
+      $.ajax({
+          type: 'POST',
+          url: "{% url 'admin-addvouchercode' %}",
+          data: serializedData,
+          success: function (response) {
+            // console.log(response)
+            window.location.reload();
+            alert("Job Code Added successfully")
+  
+            
+          },
+          error: function (response) {
+              // alert the error if any error occured
+              window.location.reload();
+              alert(response["responseJSON"]["error"]);
+          }
+      })
+  })
+  
+  $("#editvouchercode").submit(function (e) {
+    // preventing from page reload and default actions
+    e.preventDefault();
+    // serialize the data for sending the form data.
+    var serializedData = $(this).serialize();
+    
+    // make POST ajax call
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-editvouchercode' %}",
+        data: serializedData,
+        success: function (response) {
+          // console.log(response)
+          window.location.reload();
+          alert("Voucher Code Edited successfully")
+  
+          
+        },
+        error: function (response) {
+            // alert the error if any error occured
+            window.location.reload();
+            alert(response["responseJSON"]["error"]);
+        }
+    })
+  })
+  
+  function editvouchercode(aid,code,price){
+    
+    $('#activationid').attr('value',aid)
+    
+    $('#code').attr('value',code)
+    $('#price').attr('value',price)
+    
+    
+    }
+    
+  
+ 
+ 
+  
+  
+  </script>
+</body>
+
+</html>
+
+<!-- col-12 col-sm-6 col-md-3 grid-margin stretch-card -->

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/stylemain.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+    <!-- materialIcons -->
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <style>
+        .dash {
+            margin-right: 6px;
+        }
+
+         td{
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        thead th{
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .edit:active,
+        .edit:hover {
+            color: blue;
+        }
+
+        .del:active,
+        .del:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+            <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button"
+                data-toggle="offcanvas" onclick="navtoggler()" id="togglebtn">
+                <i class="fas fa-bars mobile-nav-toggle"></i>
+            </button>
+        </nav>
+        <div class="page-body-wrapper d-flex frame">
+            {% include "admin_temp/sidenav.html" %}
+
+            <!-- end of sidebar  -->
+
+            <div class="main" id='main'>
+                <div class="content-wrapper">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">College Details <i style=" font-size: 30px;  "
+                                class="material-icons pointer hover" data-toggle="modal"
+                                data-target="#exampleModal" >add_circle_outline</i> </h4>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table id="order-listing" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.no</th>
+                                                    <th>College Name</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                            <tbody>
+                                                {% for i in t %}
+                                                <tr>
+                                                    <td>{{forloop.counter}} </td>
+                                                    <td> {{i.name}} </td>
+                                                    <td> <a style="font-size: 15px; font-weight: bold;margin-top: -8px;">
+                                                            {% if i.status == 1 %}
+                                                            <div class="btn btn-success" style="align-self: center;"
+                                                                onclick="changestatus('{{ i.status }}','{{i.id}}')">Active
+                                                            </div>
+                                                            {% endif %}
+                                                            {% if i.status == 0 %}
+                                                            <div class="btn btn-danger" style="align-self: center;"
+                                                                onclick="changestatus('{{ i.status }}','{{i.id}}')">In
+                                                                Active</div>
+                                                            {% endif %}
+    
+                                                        </a>
+                                                    </td> 
+    
+                                    <td>
+                                        <i style=" font-size: 30px;" class="material-icons icon-blue pointer"
+                                            data-toggle="modal" data-target="#editexampleModal"
+                                            onclick="editclg('{{i.id}}','{{i.name}}')">mode_edit_outline</i>
+                                        
+    
+                                    </td>
+    
+                                    </tr>
+    
+                                    {% endfor %}
+
+
+                                                <!-- ---------Daily report start here---- -->
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals  -->
+    <!-- -----addaclg model start- -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add New College</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id='addclg' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputEmail4">College Name</label>
+                                <input type="text" class="form-control" id="addcollegename" name="addcollegename"
+                                    placeholder="College Name">
+                            </div>
+
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- -----addclg model end- -->
+
+
+
+
+    <!-- -----editclg model start- -->
+    <div class="modal fade" id="editexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit College Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id='editclg' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+                        <input type="hidden" name="cid" id="cid">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="code">College Name</label>
+                                <input type="text" class="form-control" id="clgname" name="clgname"
+                                    placeholder="College Name">
+                            </div>
+
+
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- -----editclg model end- -->
+
+
+
+    <div class="modal fade" id="deleteexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Caution</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id='deleteclg' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+                        <input type="hidden" name="deletecid" id="deletecid">
+
+                        This process can't be revert
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Are you sure</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--delete conformation Modal End -->
+    <script>
+        function navtoggler() {
+            let btn = document.getElementById('togglebtn');
+            let sidebar = document.getElementById('sidebar');
+            if (sidebar.style.display === 'none') {
+                sidebar.style.display = 'block';
+            } else {
+                sidebar.style.display = 'none';
+            }
+            // sidebar.style.display ='block';
+
+        }
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+
+
+    <script>
+
+        $("#addclg").submit(function (e) {
+            // preventing from page reload and default actions
+            e.preventDefault();
+            // serialize the data for sending the form data.
+            var serializedData = $(this).serialize();
+    
+            // make POST ajax call
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'admin-addcollege' %}",
+                data: serializedData,
+                success: function (response) {
+                    // console.log(response)
+                    window.location.reload();
+                    alert("College Added successfully")
+    
+    
+                },
+                error: function (response) {
+                    console.log(response)
+                    // alert the error if any error occured
+                    window.location.reload();
+                    alert(JSON.parse(response["responseText"])['error']);
+                }
+            })
+        })
+    
+        $("#editclg").submit(function (e) {
+            // preventing from page reload and default actions
+            e.preventDefault();
+            // serialize the data for sending the form data.
+            var serializedData = $(this).serialize();
+    
+            // make POST ajax call
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'admin-editclgname' %}",
+                data: serializedData,
+                success: function (response) {
+                    // console.log(response)
+                    window.location.reload();
+                    alert("College Name Edited successfully")
+    
+    
+                },
+                error: function (response) {
+                    // alert the error if any error occured
+                    window.location.reload();
+                    alert(response["responseJSON"]["error"]);
+                }
+            })
+        })
+    
+        function editclg(cid, clgname) {
+    
+            $('#cid').attr('value', cid)
+    
+            $('#clgname').attr('value', clgname)
+    
+    
+        }
+    
+    
+        $("#deleteclg").submit(function (e) {
+            // preventing from page reload and default actions
+            e.preventDefault();
+            // serialize the data for sending the form data.
+            var serializedData = $(this).serialize();
+            // make POST ajax call
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'admin-deleteclg' %}",
+                data: serializedData,
+                success: function (response) {
+                    // console.log(response)
+                    window.location.reload();
+                    alert("College Deleted successfully")
+    
+    
+                },
+                error: function (response) {
+                    // alert the error if any error occured
+                    window.location.reload();
+                    alert(response["responseJSON"]["error"]);
+                }
+            })
+        })
+    
+        function deleteclgname(cid) {
+            $('#deletecid').attr('value', cid)
+    
+    
+    
+    
+        }
+    
+    
+    
+    
+    
+        function changestatus(status, id) {
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'admin-clgstatus' %}",
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}', 'data': status, 'regid': id },
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                success: function (response) {
+                    $(document).ajaxStop(function () {
+                        window.location.reload();
+                    });
+    
+    
+                },
+                error: function (response) {
+                    // alert the error if any error occured
+                    // alert(response["responseJSON"]["error"]);
+                }
+            })
+    
+    
+        }
+    
+        window.addEventListener("pageshow", function (event) {
+            var historyTraversal = event.persisted ||
+                (typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+    
+    </script>
+</body>
+
+</html>
+

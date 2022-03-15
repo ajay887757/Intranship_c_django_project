@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/stylemain.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+<!-- materialIcons -->
+<script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script> 
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+<!-- google icons  -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+
+  .card {
+      border: none;
+      border-radius: 10px;
+  }
+  /* .cardf{
+  
+    background-color: #d3c47c9e;
+    background-color: #dfdfdf;
+  } */
+  .if{
+    font-size: 23px;
+    color:gray;
+  }
+  .c-details span {
+      font-weight: 300;
+      font-size: 13px
+  }
+  
+  .iconf {
+      width: 40px;
+      height: 40px;
+      background-color: #eee;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 39px
+  }
+  
+  .badgef {
+      background-color: #fffbec;
+      width: 117px;
+      height: 25px;
+      padding-bottom: 3px;
+      border-radius: 5px;
+      display: flex;
+      /* color: #fed85d; */
+      color: #af880a;
+      justify-content: center;
+      align-items: center
+  }
+  
+  .progress {
+      height: 10px;
+      border-radius: 10px
+  }
+  
+  .progress div {
+    background-color: #16272e9e;
+    /* background-color: #866ec7; */
+  }
+  
+  .text1 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #c37070;
+  }
+   .dash{
+     margin-right:6px;
+   }
+  .acc{
+    font-size: 19px;
+      text-align: center;
+      color: #ededed;
+      margin-top: 6px;
+  }
+  .main{
+    width:80%
+  }
+  .divider{
+    width: 80%;
+  text-align: center;
+  border-bottom: 1px solid #979faf;
+  line-height: 0.1em;
+  margin-top: 15px;
+      margin-left: 0px;
+  margin-left: 10%;
+  }
+  .divider span{
+    background: #dfddf0;
+      border-radius: 25px;
+      padding: 5px 15px;
+  }
+  .tipAmb{
+    /* background-color: #e2e765; */
+    background-color: #3ed557;
+    border-color: #3ed557;
+    border-radius: 0.625rem;
+    /* width: 350px;
+      height: 133px; */
+   /* display: flex;
+   flex-direction: column;
+   align-items:center ; */
+  }
+  .tipicon{
+    font-size: 400%;
+    color: #423d3d;
+  }
+  .head-tip{
+    font-size: 126%;
+  
+  }
+  .count{
+    color: #b16969;
+    font-size: 164%;
+  }
+  .hov{
+    background-color: #ededed;
+  }
+  /* bda css  */
+  
+  
+  .panel {
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 24px;
+  }
+  
+  .panel-dark.panel-colorful {
+    background-color: #3b4146;
+    border-color: #3b4146;
+    color: #fff;
+    border-radius: 0.625rem;
+  }
+  
+  .panel-danger.panel-colorful {
+    background-color: #f76c51;
+    border-color: #f76c51;
+    color: #fff;
+    border-radius: 0.625rem;
+  }
+  
+  .panel-primary.panel-colorful {
+    /* background-color: #5fa2dd; */
+    background-color: #0f5491ed;
+  
+    /* border-color: #5fa2dd; */
+    border-color:#0f5491ed;
+    
+    color: #fff;
+    border-radius: 0.625rem;
+  }
+  
+  .panel-info.panel-colorful {
+    background-color: #0f9185ed;
+    border-color: #0f9185ed;
+    /* background-color: #910f33d9;
+    border-color: #910f33d9; */
+    /* border-color:#0f5491ed; */
+    color: #fff;
+    border-radius: 0.625rem;
+  }
+  
+  .panel-body {
+    padding: 25px 20px;
+  }
+  
+  .panel hr {
+    border-color: rgba(0,0,0,0.1);
+  }
+  
+  .mar-btm {
+    margin-bottom: 15px;
+  }
+  
+  h2, .h2 {
+    font-size: 28px;
+  }
+  
+  .small, small {
+    font-size: 85%;
+  }
+  
+  .text-sm {
+    font-size: .9em;
+    font-weight: 500;
+  }
+  
+  .text-thin {
+    font-weight: 400;
+  }
+  
+  .text-semibold {
+    font-weight: 600;
+  }
+  /* bda css end  */
+  @media (max-width: 991px) {
+   
+    
+    .main{
+      width:100%;
+    }
+  }
+  @media (max-width:401px) {
+    /* .tipAmb{
+  /* width:147px; */
+  /* width: 197%; */
+    /* }  */
+  } 
+  @media (max-width:405px){
+    .mycard{
+      width:80%;
+      margin:auto;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="container-scroller">
+  
+
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+  <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button" data-toggle="offcanvas" onclick="navtoggler()" id="togglebtn">
+    
+    <i class="fas fa-bars mobile-nav-toggle"></i>
+  </button>
+</nav>
+<div class="page-body-wrapper d-flex frame">
+
+{% include "admin_temp/sidenav.html" %}
+<!-- end of sidebar  -->
+
+
+<div class="main" id='main' >
+  <div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-12 grid-margin">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex align-items-center dashboard-header flex-wrap mb-3 mb-sm-0">
+          <h5 class="mr-4 mb-0 font-weight-bold">Dashboard</h5>
+          
+        </div>
+        <div class="d-flex">
+          <form style="float:right;" method="POST" enctype="multipart/form-data" >{%csrf_token %}
+
+      <div style="float:right;">
+
+          <select id='cyear' name='cyear' class="btn btn-primary" onchange="this.form.submit()">
+          <option {% if  year == 2021 %} selected {% endif %} class="btn btn-light" value= '2021'>2021</option>
+          <option {% if  year == 2022 %} selected {% endif %} class="btn btn-light" value='2022'>2022</option>
+          </select> 
+        
+        
+      </div>
+      
+      <div  id="head2"  style="float:right; margin-right:6px">
+        {% comment %} 
+        <form id="apply" method="POST" enctype="multipart/form-data" >{%csrf_token %} {% endcomment %}
+        <select id='cmonth' name='cmonth' class="btn btn-primary" onchange="this.form.submit()">
+        <option value='' class="btn btn-light"  disabled>--Select Month--</option>
+        <option {% if  month == 1 %} selected {% endif %} class="btn btn-light" value= '1'>Janaury</option>
+        <option {% if  month == 2 %} selected {% endif %} class="btn btn-light" value='2'>February</option>
+        <option {% if  month == 3 %} selected {% endif %} class="btn btn-light"  value='3'>March</option>
+        <option {% if  month == 4 %} selected {% endif %} class="btn btn-light"  value='4'>April</option>
+        <option {% if  month == 5 %} selected {% endif %} class="btn btn-light"  value='5'>May</option>
+        <option {% if  month == 6 %} selected {% endif %} class="btn btn-light"  value='6'>June</option>
+        <option {% if  month == 7 %} selected {% endif %} class="btn btn-light"  value='7'>July</option>
+        <option {% if  month == 8 %} selected {% endif %} class="btn btn-light"  value='8'>August</option>
+        <option {% if  month == 9 %} selected {% endif %} class="btn btn-light"  value='9'>September</option>
+        <option {% if  month == 10 %} selected {% endif %} class="btn btn-light"  value='10'>October</option>
+        <option {% if  month == 11 %} selected {% endif %} class="btn btn-light" value='11'>November</option>
+        <option {% if  month == 12 %} selected {% endif %}  class="btn btn-light"  value='12'>December</option>
+        </select> 
+      
+      
+        
+      </form>
+    </div>
+      </form>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  
+
+  <div class="row">
+    <div class="col my-2">
+      <div class="icon-card-info">
+      <div class="card-body">
+          <a href="" style="color:white"><div class="d-flex align-items-center">
+            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+              <!-- <img src="job.png" alt="jobs" class="myicon"> -->
+              <i class="far fa-user-circle acc"></i>
+            </div>
+            <p class="font-weight-medium mb-0">Accounts</p>
+          </div>
+        </a>
+          <div class="d-flex align-items-center mt-3 flex-wrap">
+            <h3 class="font-weight-normal mb-0 mr-2">{{totalacccreate}} </h3>
+            <div class="badge badge-outline-light badge-pill mt-md-2 mt-xl-0">
+              <div class="d-flex align-items-baseline">
+                <span class="mr-2">
+                  <a href="{% url 'admin-accountstates' 'today' %}"  style="text-decoration: none;color:white">Today</a>
+                </span>
+                
+                <span class="mb-0">{{todayacccreate}} </span>
+                <i class="fas fa-arrow-up ml-1"></i>
+              </div>
+            </div>
+          </div>
+          <small class="font-weight-medium d-block mt-2">
+            <a href="{% url 'admin-accountstates' 'total' %}"  style="text-decoration: none;color:white">Total For this month</a></span>
+
+          </small>
+      </div>
+    </div>
+  </div>
+    <div class="col my-2">
+      
+        <div class="icon-card-primary">
+          <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                  <img src="/static/job.png" alt="jobs" class="myicon" />
+                </div>
+                <p class="font-weight-medium mb-0">Jobs</p>
+              </div>
+              <div class="d-flex align-items-center mt-3 flex-wrap">
+                <h3 class="font-weight-normal mb-0 mr-2">{{total_jobs}}</h3>
+                <div class="badge badge-outline-light badge-pill mt-md-2 mt-xl-0">
+                  <div class="d-flex align-items-baseline">
+                    <span class="mr-2">
+                      <a href="{% url 'candidatelist' 6  'today' month year 'Job' %}"  style="text-decoration: none;color:white">Today</a>
+
+                    </span>
+                    <span class="mb-0">{{today_jobs}}</span>
+                    <i class="fas fa-arrow-up ml-1"></i>
+                  </div>
+                </div>
+              </div>
+              <small class="font-weight-medium d-block mt-2"
+              >
+              <a href="{% url 'candidatelist' 6  'total' month year 'job' %}"  style="text-decoration: none;color:white">Total for this month</a>
+              </small
+            >
+          </div>
+        </div>
+    </div>
+    <div class="col my-2">
+     
+      <div class="icon-card-success">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                <img
+                src="/static/internship.png"
+                alt="internship"
+                class="myicon"
+              />
+              </div>
+              <p class="font-weight-medium mb-0">Internships</p>
+            </div>
+            <div class="d-flex align-items-center mt-3 flex-wrap">
+              <h3 class="font-weight-normal mb-0 mr-2">{{total_internship}}</h3>
+              <div class="badge badge-outline-light badge-pill mt-md-2 mt-xl-0">
+                <div class="d-flex align-items-baseline">
+                  <span class="mr-2"><a href="{% url 'candidatelist' 5  'today' month year 'Internship' %}"  style="text-decoration: none;color:white">Today</a>
+                  </span>
+                  <span class="mb-0">{{today_internship}}</span>
+                  <i class="fas fa-arrow-up ml-1"></i>
+                </div>
+              </div>
+            </div>
+            <small class="font-weight-medium d-block mt-2"
+            >
+            <a href="{% url 'candidatelist' 5  'total' month year 'Internship' %}"  style="text-decoration: none;color:white">Total for this month</a>
+            </small
+          >
+          </div>
+      </div>
+    </div>
+
+    <div class="col my-2">
+      <div class="icon-card-dark">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                <img src="/static/tip.png" alt="tip" class="myicon" />
+              </div>
+              <p class="font-weight-medium mb-0">CRTD TIP</p>
+            </div>
+            <div class="d-flex align-items-center mt-3 flex-wrap">
+              <h3 class="font-weight-normal mb-0 mr-2">{{total_tip}}</h3>
+              <div class="badge badge-outline-light badge-pill mt-md-2 mt-xl-0">
+                <div class="d-flex align-items-baseline">
+                  <span class="mr-2">
+                    <a href="{% url 'candidatelist' 7  'today' month year 'TIP' %}"  style="text-decoration: none;color:white">Today</a>
+                    </span>
+                    <span class="mb-0">{{today_tip}}</span>
+                  <i class="fas fa-arrow-up ml-1"></i>
+                </div>
+              </div>
+            </div>
+
+            <small class="font-weight-medium d-block mt-2"
+            >
+            <a href="{% url 'candidatelist' 7  'total' month year 'TIP' %}"  style="text-decoration: none;color:white">Total for this month</a>
+            </small>
+          </div>
+      </div>
+    </div>
+   
+  </div>
+  <div class="divider mb-4">
+    <span>Status</span>
+  </div>
+  
+  <div class="row">
+    <!-- <div class="col mycard"> -->
+      <div class="card tipAmb ml-3">
+      <div class="card-body">
+        <div class="d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center">
+          <i class="fas fa-user-tie tipicon"></i>
+          <div class="ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0">
+            <h6 class="mb-0 head-tip mt-1">TIP Campus Ambassador</h6>
+          
+            <p class="mb-0 font-weight-bold count mt-2">{{Alltipcampusexe}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+<script>
+  
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+
+// navbar toggler 
+// function navtoggler(){
+// let btn =document.getElementById('togglebtn');
+// let sidebar =document.getElementById('sidebar');
+// if (sidebar.style.display === 'none') {
+//     sidebar.style.display = 'block';
+//   } else {
+//     sidebar.style.display = 'none';
+//   }
+// // sidebar.style.display ='block';
+
+// }
+</script>
+<script src="/static/index.js"></script>
+</body>
+</html> 
+
+<!-- col-12 col-sm-6 col-md-3 grid-margin stretch-card -->

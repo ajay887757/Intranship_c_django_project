@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/stylemain.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font font-awesome -->
+    <script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+    <!-- or search  -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- search end  -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300&family=Open+Sans&family=Patua+One&family=Roboto&family=Sanchez&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+        }
+
+        .main {
+            /* background-color: black; */
+            /* margin-left:20%;  */
+            /*Same as the width of the sidenav*/
+            /* font-size: 20px; Increased text to enable scrolling */
+
+            width: 80%;
+            margin-top: 15px;
+            padding: 0px 10px;
+            /* width:60%; */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .myimg {
+            margin-top: -6px;
+            border-radius: 50%;
+            padding-top: 0;
+            margin-bottom: -6px;
+        }
+
+        td,
+        th {
+            text-align: center;
+        }
+
+        .table th {
+            padding: 20px;
+        }
+
+        td {
+            font-size: 88%;
+            color: gray;
+        }
+
+        .actionicons {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .eye {
+            color: #1313ff;
+        }
+
+        .eye:hover {
+            color: #1010a8;
+        }
+
+        .dust {
+            color: #e91212;
+        }
+
+        .dust:hover {
+            color: #a35050;
+
+        }
+
+        .activei {
+            color: #4ac54a;
+        }
+
+        .activei:hover {
+            color: #2ef32e;
+        }
+
+        .title {
+            margin-left: 4px;
+        }
+
+        thead {
+            background-color: #6c7ae0;
+            border-color: #6c7ae0;
+            color: white;
+
+        }
+
+        @media screen and (max-width: 991px) {
+            .main {
+                width: 100%;
+            }
+
+            .header_wrap {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+            <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button"
+                data-toggle="offcanvas" onclick="navtoggler()" id="togglebtn">
+
+                <i class="fas fa-bars mobile-nav-toggle"></i>
+            </button>
+        </nav>
+        <div class="page-body-wrapper d-flex frame">
+
+            <!-- sidebar  -->
+            {% include "admin_temp/sidenav.html" %}
+
+            <!-- sidebar end  -->
+            <div class="main">
+                <div class="card-body">
+                    <h4 class="card-title title">Accounts Details</h4>
+                    <!-- <div class="table-responsive">
+              <table class="table">
+               -->
+                    <div class="table-responsive rounded">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th>Name</th>
+                                    <th>Photo</th>
+                                    <th>College Name</th>
+                                    <th>Stream</th>
+                                    <th>Passing Year</th>
+                                    <th>Action</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                {% for account in accounts %}
+                                <tr>
+                                    <td>
+                                        {{ forloop.counter }}
+                                    </td>
+                                    <td>
+                                        {{account.name}}
+                                    </td>
+                                    <td>
+                                        <img src="{{account.photo}}" alt="" width="40" height="40" class="myimg">
+                                    </td>
+                                    <td>
+                                       {{account.college.name}}
+                                    </td>
+                                    <td>
+                                        {{account.course_type.name}}
+                                        
+                                    </td>
+                                    <td>
+                                        {{account.passing_year.name}}
+                                    </td>
+                                    <td>
+                                        <div class="action d-flex justify-content-around align-items-center">
+                                            <i class="fas fa-eye actionicons eye"></i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if account.status == 0 %}
+                                        <div style="color:#ec0505" ;>
+                                            <li>inActive</li>
+                                        </div>
+                                        {% endif %}
+                                        {% if account.status == 1 %}
+                                        <div style="color:#20b520" ;>
+                                            <li>Active</li>
+                                        </div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       
+         <!--Confirmation modal -->
+  <div class="modal fade" id="confmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Caution</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-footer">
+        <form id='updatestatus' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+          <input type="hidden" name="applicationid" id="applicationid">
+          <input type="hidden" name="status" id="status">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Are you sure</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- confirmation modal end -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script src="/static/tech.js"></script>
+        <script src="/static/index.js"></script>
+        <script>
+            electpicker();
+            // });
+            tail.select('#select1', {
+                search: true
+            });
+        </script>
+
+</body>
+
+</html>

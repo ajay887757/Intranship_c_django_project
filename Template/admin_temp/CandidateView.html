@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate View</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/static/stylemain.css">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+
+  <!-- google icons  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/static/stylemain.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Patua+One&display=swap');
+    .aa1{
+  font-size: 20px;
+  padding: 22px;
+}
+    .main {
+      width: 80%;
+    }
+    .badgef {
+  background-color: #fff4cb;
+    /* width: 117px; */
+    /* height: 25px; */
+    padding-bottom: 3px;
+    border-radius: 5px;
+    display: flex;
+    /* color: #fed85d; */
+    color: #af880a;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 0px;
+}
+
+    .mine {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .badge {
+      border-radius: 4px;
+      font-size: 15px;
+      line-height: 1;
+      padding: 0.475rem 0.5625rem;
+      font-weight: normal;
+    }
+
+    .mp-wid {
+      width: 60%;
+      margin: auto;
+    }
+
+    .map-wrapper {
+      width: 100%;
+      /* border:4px solid black; */
+    }
+
+    .icon {
+      display: flex;
+      width: 35px;
+      height: 35px;
+      border-radius: 8px;
+      /* background: rgba(255, 255, 255, 0.3); */
+      /* background: rgb(224 216 216 / 20%); */
+      /* background:#039be5; */
+      /* background-color: #a9c6d4; */
+      background-color: #03a9f4;
+      /* text-align: center; */
+      color: white;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mybtn {
+      background-color: #866ec7;
+      color: white;
+      outline: none;
+    }
+
+    .mybtn:hover {
+      background-color: #6941cc;
+
+    }
+
+    .content-wrapper {
+      background-color: #d8d6f8;
+      ;
+    }
+
+    .mod-style {
+      background-color: rgb(48 47 47);
+      color: white;
+    }
+
+    .fnt {
+      font-family: 'Patua One', cursive;
+      color: #ffe082;
+      margin-bottom: 2px;
+    }
+
+    .tick {
+      color: #3fe73f;
+      font-size: 20px;
+    }
+
+    .rupees {
+      font-size: 22px;
+    }
+
+    /* toggle button css  */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* background-color: #ccc; */
+      background-color: rgb(255, 81, 0);
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #33f321;
+    }
+
+    input:focus+.slider {
+      /* box-shadow: 0 0 1px #2196F3; */
+      box-shadow: 0 0 1px #33f321;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    /* toggle button css end  */
+    @media screen and (max-width: 991px) {
+      .main {
+        width: 100%;
+      }
+
+    }
+
+    @media screen and (max-width: 560px) {
+      .text-right {
+        font-size: 14px;
+      }
+
+    }
+    .feed{
+      float: right;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+      <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button" data-toggle="offcanvas"
+        onclick="navtoggler()" id="togglebtn">
+
+        <i class="fas fa-bars mobile-nav-toggle"></i>
+      </button>
+    </nav>
+    <!-- <div class="wrapper d-flex align-items-stretch"> -->
+    <div class="page-body-wrapper d-flex frame">
+
+      <!-- sidenav  -->
+      {% include "admin_temp/sidenav.html" %}
+      <!-- sidenav end  -->
+      <!-- sidenav end  -->
+      <!-- font awesome  -->
+
+      
+      <div class="main" id='main'>
+        <div class="content-wrapper" id="content-wrapper">
+          <div class="row">
+            <div class="col grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+
+                  <div class="d-flex align-items-center">
+                    <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                      <i class="fas fa-user"></i>
+                    </div>
+                    <h4 class="card-title font-weight-bold mb-0">Candidate Details</h4>
+                  </div>
+                  {% for i in data %}
+                  <input type="text" id='appliedid' value="{{i.id}}" hidden>
+
+                  <div class="border-bottom text-center py-4">
+                    <img src="{{i.emp.photo}}" alt="" width="100" height="100" class="img-lg rounded-circle mb-3">
+                    <h3
+                      style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                      {{i.emp.name}}</h3>
+                    {% if i.emp.regid is not None %} 
+                    <h3
+                      style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                      {{i.emp.regid}} </h3>
+                       {% endif %}
+                  </div>
+                  <p class="card-description">
+                    <!-- here details begin  -->
+                    <div class="ri">
+
+                      <div class="badgef">{{applicationstatus}} </div>
+                    </div>
+                  <div class="py-4">
+                    <input type="text" id='empid' value="{{i.emp.id}}" hidden>
+
+
+                    <p class="row">
+                      <span class="col">
+                        Email
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.email}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Passing Year
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.passing_year.name}}
+                      </span>
+                    </p>
+
+                    <p class="row">
+                      <span class="col">
+                        Phone
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.phoneno}}
+                      </span>
+                    </p>
+
+                    <p class="row">
+                      <span class="col">
+                        Course Type
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.course_type.name}}
+
+                      </span>
+                    </p>
+                    {% if i.emp.branch is not None %}
+                    <p class="row">
+                      <span class="col">
+                        Branch
+                      </span>
+
+                      <span class="col text-muted">
+                        {% if i.emp.branch == 1%}
+                        CS
+                        {% endif%}
+                        {% if i.emp.branch == 2 %}
+                        IT
+                        {% endif%}
+                        {% if i.emp.branch == 3 %}
+                        EC
+                        {% endif%}
+                        {% if i.emp.branch == 4 %}
+                        EX
+                        {% endif%}
+                        {% if i.emp.branch == 5 %}
+                        CE
+                        {% endif%}
+                        {% if i.emp.branch == 6 %}
+                        ME
+                        {% endif%}
+                      </span>
+                    </p>
+                    {% endif %}
+                    {% if statename is not None %}
+                    <p class="row">
+                      <span class="col">
+                        state
+                      </span>
+
+                      <span class="col text-muted">
+                      {{statename}}
+                      </span>
+                    </p>
+                    {% endif %}
+                    {% if distname is not None %}
+                    <p class="row">
+                      <span class="col">
+                        District
+                      </span>
+
+                      <span class="col text-muted">
+                      {{distname}}
+                      </span>
+                    </p>
+                    {% endif %}
+                    <p class="row">
+                      <span class="col">
+                        Job Profile
+                      </span>
+                      <span class="col text-muted">
+                        {{i.jobprofile.name}}
+                        <input type="text" id="jobprofile" value="{{i.jobprofile.id}}" hidden>
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        College name
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.college.name}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Permanent Address
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.paddress}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Current Address
+                      </span>
+                      <span class="col text-muted">
+                        {{i.emp.caddress}}
+
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Status of Candidate
+                      </span>
+                      <span class="col text-muted">
+
+                        <!-- <span>Active -->
+                        <label class="switch">
+                          {% csrf_token %}
+                          
+                          <input type="checkbox" id="statuscheckbox" {% if i.emp.status == 1 %} checked {% endif %}> 
+                          <span class="slider round"></span>
+                        </label>
+                        <!-- Inactive
+                      </span> -->
+                      </span>
+                    </p>
+                    {% if i.emp.selected_job_profile.id == 9 %}
+                    <p class="row">
+                      <span class="col">
+                        Can Hire?
+                      </span>
+                      <span class="col text-muted">
+
+                        <label class="switch">
+                          <input type="checkbox" id="canhirecheckbox" {% if i.emp.canhirestatus == 1 %} checked {% endif%}>
+                          <span class="slider round"></span>
+                        </label>
+
+                      </span>
+                    </p>
+                    {% endif %}
+
+
+                  </div>
+                  </p>
+                </div>
+              </div>
+              <!-- //payment details  -->
+              {% if i.type == 3 and i.status == 3 %}
+              <div class="card mt-3">
+                <div class="card-body">
+                  <div class="d-flex align-items-center">
+                    <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+
+                      <!-- <i class="fas fa-university"></i> -->
+                      <i class="fas fa-credit-card"></i>
+
+
+                    </div>
+                    <h5 class="card-title font-weight-bold mb-0">Payment Details</h5>
+                  </div>
+                  <div class="py-3">
+
+                    <button class="btn btn-secondary" id="paybtn" data-toggle="modal"
+                      data-target="#exampleModalLong">View</button>
+
+
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+
+              <!-- payment details end  -->
+            </div>
+            <div class="col grid-margin stretch-card">
+              <div class="btn-group feed">
+                <a href="" class="btn btn-primary active" data-toggle="modal" onclick="set_feedback(`{{i.feedback}}`)" data-target="#feedback" aria-current="page">Feedback</a>
+                </div>
+
+              <div class="card-body">
+
+                <div class="d-flex align-items-center">
+                  <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </div>
+                  <h4 class="card-title font-weight-medium mb-0">Status of Application</h4>
+                </div>
+
+
+
+                <p class="card-description">Change status of Application according to his/her performance </p>
+
+                <div class="form-group">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiob" {% if i.status == 3 %}checked {% endif %}
+                      id="flexRadioDefault1" onclick="update('{{id}}',3)" value="3">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Selected
+                    </label>
+                  </div>
+                  {% if i.jobprofile.id != 17 %}
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiob" {% if i.status == 4 %}checked {% endif %}
+                      id="flexRadioDefault2" value="4">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Selected for Interview
+                    </label>
+                  </div>
+
+                  {% endif %}
+
+                  {% if i.jobprofile.id == 17 %}
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiob" {% if i.status == 7 %}checked {% endif %}
+                      id="flexRadioDefault7" onclick="update('{{id}}',7)" value="7">
+                    <label class="form-check-label" for="flexRadioDefault7">
+                      Interview under processing
+                    </label>
+                  </div>
+
+                  {% endif %}
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiob" {% if i.status == 2 %}checked {% endif %}
+                      id="flexRadioDefault3" onclick="update('{{id}}',2)" value="2">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                      Rejected
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiob" {% if i.status == 5 %}checked {% endif %}
+                      id="flexRadioDefault4" onclick="update('{{id}}',5)" value="5">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                      Quit
+                    </label>
+                  </div>
+               
+                </div>
+
+
+              </div>
+              {% if i.address is not None %}
+              <!-- interview details  -->
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center">
+                    <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                      <i class="fas fa-university"></i>
+                    </div>
+                    <h5 class="card-title font-weight-bold mb-0">Interview Details</h5>
+                  </div>
+                  <div class="py-3">
+
+                    <p class="row">
+                      <span class="col">
+                        Interview Date
+                      </span>
+
+                      <span class="col text-muted">
+                        {{i.interview_date}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Address
+                      </span>
+
+                      <span class="col text-muted">
+                        {{i.address}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Contact Name
+                      </span>
+
+                      <span class="col text-muted ">
+                        {{i.contactname}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Contact Number
+                      </span>
+
+                      <span class="col text-muted ">
+                        {{i.contactno}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Instructions
+                      </span>
+
+                      <span class="col text-muted">
+                        {{i.instruction}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        location
+                      </span>
+
+                      <span class="col text-muted">
+                        {{i.location}}
+                      </span>
+                    </p>
+
+
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              
+
+              {% if i.enroll_expire_date is not None %}
+              <!-- interview details  -->
+
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+
+        <!-- <i class="fas fa-university"></i> -->
+        <i class="fas fa-info"></i>
+        
+
+      </div>
+      <h5 class="card-title font-weight-bold mb-0">Enrollment Details
+        <a href="#" class="aa1" data-toggle="modal" data-target="#EnrollmentModal">Edit</a></h5>
+    </div>
+    <div class="py-3">
+                     
+      
+        <p class="row">
+        <span class="col">
+        Enrollment Expire date
+        </span>
+        
+        <span class="col text-muted ">
+         {{i.enroll_expire_date}}
+        </span>
+      </p>
+      <p class="row">
+        <span class="col">
+        Amount to be Paid
+        </span>
+        
+        <span class="col text-muted ">
+         Rs.{{i.amount_to_paid}}
+        </span>
+      </p>
+
+      
+      </div>
+    </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+<!-- interview details end  -->
+
+              <!-- interview details end  -->
+              <!-- Higher qualifications -->
+              <div class="card mt-3">
+                <div class="card-body">
+                  <div class="d-flex align-items-center">
+                    <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                      <i class="fas fa-university"></i>
+                    </div>
+                    <h5 class="card-title font-weight-bold mb-0">Highest Qualifications</h5>
+                  </div>
+                  {% for edu in edu_data%}
+                  <div class="py-3">
+                    <h5>{% if edu.hq_type == 1 %} CLASS XII {% endif %}</h5>
+                    <h5>{% if edu.hq_type == 2 %} CLASS X {% endif %}</h5>
+                    <p class="row">
+                      <span class="col">
+                        Score
+                      </span>
+                      <span class="col text-muted text-right">
+                        {{edu.total_marks}}%
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Board
+                      </span>
+                      <span class="col text-muted text-right">
+                        {{edu.board.name}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Passing Year
+                      </span>
+                      <span class="col text-muted text-right">
+                        {{edu.py.name}}
+                      </span>
+                    </p>
+                    <p class="row">
+                      <span class="col">
+                        Medium
+                      </span>
+                      <span class="col text-muted text-right">
+                        {% if edu.school_medium == 1 %} Hindi {% endif %}
+                        {% if edu.school_medium == 2 %} English {% endif %}
+                      </span>
+                    </p>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- skills section  -->
+              <div class="card mt-3">
+
+
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Special title treatment</h5> -->
+                  <div class="d-flex align-items-center">
+                    <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                      <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h5 class="card-title font-weight-bold mb-0">Skills</h5>
+                  </div>
+                  <p class="card-text">
+                  <div class="border-bottom">
+                    <div>
+                      {% for skill in skill_data%}
+                      <label class="badge badge-secondary">{{ skill.title }}</label>
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- //code for map   -->
+
+        {% for i in data %}
+        <div class="d-flex flex-row justify-content-center">
+
+          <div class="map-wrapper">
+
+
+            <iframe src="https://maps.google.com/maps?q={{i.emp.lattitude}},{{i.emp.longitude}}&amp;output=embed"
+              style="width:100%;height:500px;"></iframe>
+          </div>
+
+        </div>
+        {% endfor %}
+
+        <!-- end of code for map  -->
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+  <!-- start fill Selected interview details modal -->
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-xs-center">Fill the details regrading Interview</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="selectedforinterview" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+            <input type="hidden" name="status_4" id="status_4" value="4">
+            <input type="hidden" name="_token" id="_token" value={{id}}>
+            <div class="form-group">
+              <label class="control-label">Interview Date</label>
+              <div>
+                <input type="datetime-local" class="form-control input-lg" name="date" id="date" value="" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Contact Name</label>
+              <div>
+                <input type="text" class="form-control input-lg" name="textname" id="textname" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Contact Number</label>
+              <div>
+                <input type="text" class="form-control input-lg" name="textphone" id="textphone" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Address</label>
+              <div>
+                <input type="text" class="form-control input-lg" name="textadd" id="textadd" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Location</label>
+              <div>
+                <input type="text" class="form-control input-lg" name="location" id="location" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Instructions</label>
+              <div>
+                <input type="text" class="form-control input-lg" name="inst" id="inst" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div>
+
+                <button type="submit" value="Submit" class="btn btn-info btn-block">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+  <!--end fill Selected interview details modal -->
+
+  <!-- start fill Selected interview details modal -->
+  <div id="bda_selected_modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-xs-center">Fill the details regrading after Selection of BDA </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="bda_selected_form" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+            <input type="hidden" name="status_4" id="status_4" value="4">
+            <input type="hidden" name="_token" id="_token" value={{id}}>
+            <div class="form-group">
+              <label class="control-label">Enrollment Expire Date</label>
+              <div>
+                <input type="datetime-local" class="form-control input-lg" name="date" id="date" value="" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Amount To Be paid</label>
+              <div>
+                <input type="text" class="form-control input-lg" name="textamount" id="textamount" required>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div>
+
+                <button type="submit" value="Submit" class="btn btn-info btn-block">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+  <!--end fill Selected interview details modal -->
+  <!-- ------------------pdf model start here- -->
+  <div class="modal fade " id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+
+      <div class="modal-content" style="width:1000px;height:1000px">
+        <div class="modal-header" style='display:block'>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+
+
+        </div>
+        <div id="pdf">
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- -----pdf model end- -->
+  <!-- /.modal -->
+
+  <!--Confirmation modal -->
+  <div class="modal fade" id="confmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Caution</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-footer">
+          <form id='updatestatus' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+            <input type="hidden" name="applicationid" id="applicationid">
+            <input type="hidden" name="status" id="status">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Are you sure</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- //modal payment  -->
+
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Payment Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mod-style">
+          <div class="first border-bottom">
+            <p class="row">
+              <span class="col">
+                Total Amount
+              </span>
+
+              <span class="col text-muted">
+                1,20,000
+              </span>
+            </p>
+            <p class="row">
+              <span class="col">
+                Paid Amount
+              </span>
+
+              <span class="col text-muted">
+                {{tip_payment_info.paid}}
+              </span>
+            </p>
+            <p class="row">
+              <span class="col">
+                Due Amount
+              </span>
+
+              <span class="col text-muted ">
+                {{tip_payment_info.due}}
+
+              </span>
+            </p>
+          </div>
+          <div class="second">
+            {% for payment in tip_payment_list %}
+            <div class="detail border-bottom">
+              <p class="text-right text-muted mt-1 fnt">{{payment.payment_date}} </p>
+              <div><i class="fas fa-rupee-sign"></i><span
+                  class="ml-1 font-weight-bold font-italic mr-2 rupees">{{payment.amount}} </span><i
+                  class="far fa-check-circle tick"></i></div>
+              <p class="fnt">Transaction Id: {{payment.transactionid}}</p>
+            </div>
+            {% endfor %}
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpayment">Add</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //modal end payment  -->
+
+  <!-- Enrollment details update modal -->
+  <div id="EnrollmentModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-xs-center">Update the details regarding Enrollment </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="enrollment_update_form" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+                  <input type="hidden" name="_token" id="_token" value={{id}}>
+                    <div class="form-group">
+                        <label class="control-label">Date</label>
+                        <div>
+                            <input type="datetime-local" class="form-control input-lg" name="enrollment_date" value="">
+                        </div>
+                    </div>
+              
+                  <div class="form-group">
+                    <label class="control-label">Amount to paid</label>
+                    <div>
+                        <input type="text" class="form-control input-lg" id="enrollment_amount"  name="enrollment_amount">
+                    </div>
+                </div>
+                  
+                    <div class="form-group">
+                        <div>
+                            
+                            <button type="submit" class="btn btn-info btn-block">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+           
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- Enrollment details update modal -->
+
+  <!-- modal for adding payment details  -->
+  <div class="modal fade" id="addpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add transaction details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <p class="row">
+            <span class="col">
+              Amount
+            </span>
+
+            <input type="text" class="col text-muted form-control mr-2" id='amount'>
+
+            </input>
+          </p>
+          <p class="row">
+            <span class="col">
+              Transaction id
+            </span>
+
+            <input type="text" class="col text-muted form-control mr-2" id='txnid'>
+
+            </input>
+          </p>
+          <p class="row">
+            <span class="col">
+              Date
+            </span>
+
+            <input type="date" class="col text-muted form-control mr-2" id='paymentdate'>
+
+            </input>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          {% csrf_token %}
+          <input type="hidden" id="csrfmiddlewaretoken" value="{{ csrf_token }}">
+          <button type="button" id="addpaymentbtn" value="Submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- confirmation model end here -->
+  <!-- Feedback -->
+  <div id="feedback" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-xs-center">Feedback </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="feedback_form" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+
+			              <textarea name="feedback_taxt" id="feedback_taxt" cols="55" rows="6"></textarea>
+                    
+      
+                  
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" id="submit"  value="Submit" class="btn btn-info btn-block">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+           
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+  <script>
+ $('#statuscheckbox').change(function () {
+  const checked = $(this).is(':checked'); 
+   $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-changeacntstatus' %}",
+        data: {
+          'csrfmiddlewaretoken': '{{ csrf_token }}',
+          status:checked?1:0,
+          empid:$("#empid").val()
+
+        },
+        success: function (response) {
+          // console.log(response)
+          window.location.reload();
+          alert("User Status Updated successfully")
+
+
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          window.location.reload();
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+ })
+
+ $('#canhirecheckbox').change(function () {
+  const checked = $(this).is(':checked'); 
+   $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-changecanhirestatus' %}",
+        data: {
+          'csrfmiddlewaretoken': '{{ csrf_token }}',
+          status:checked?1:0,
+          empid:$("#empid").val()
+
+        },
+        success: function (response) {
+          // console.log(response)
+          window.location.reload();
+          alert("Hiring  Status Changed successfully")
+
+
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+ })
+
+
+  </script>
+  
+  <script>
+    $(document).ready(function () {
+      $('input[name="radiob"]').change(function () {
+        if ($('#flexRadioDefault1').is(':checked')) {
+          if ($("#jobprofile").val() != 17) {
+            $('#confmodal').modal('show');
+          } else {
+            $("#bda_selected_modal").modal('show');
+          }
+
+
+
+
+
+
+
+        }
+        if ($('#flexRadioDefault2').is(':checked')) {
+
+          $('#myModal').modal('show');
+        }
+        if ($('#flexRadioDefault3').is(':checked')) {
+          $('#flexRadioDefault3').prop(':checked', false);
+
+          $('#confmodal').modal('show');
+        }
+        if ($('#flexRadioDefault4').is(':checked')) {
+          $('#confmodal').modal('show');
+        }
+
+        if ($('#flexRadioDefault7').is(':checked')) {
+          $('#confmodal').modal('show');
+        }
+
+      });
+    })
+
+
+    $("#updatestatus").submit(function (e) {
+      // preventing from page reload and default actions
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      // make POST ajax call
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-updatestatus' %}",
+        data: serializedData,
+        success: function (response) {
+          // console.log(response)
+          window.location.reload();
+          alert("Candidate Status Update successfully")
+
+
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          window.location.reload();
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+    })
+
+    function update(id, status) {
+      $('#applicationid').attr('value', id)
+      $('#status').attr('value', status)
+
+
+
+
+    }
+
+function set_feedback(feedback) {
+  var txt=feedback=='None'?"":feedback
+      $('#feedback_taxt').attr('value', txt)
+
+
+
+
+    }
+
+
+
+
+
+
+  </script>
+
+  <script>
+
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+
+
+  </script>
+
+  <script>
+
+    $("#selectedforinterview").submit(function (e) {
+      // preventing from page reload and default actions
+
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      // make POST ajax call
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-statusofcandidate' %}",
+        data: serializedData,
+        success: function (response) {
+          console.log(response)
+          window.location.reload();
+          alert("Record Submitted successfully")
+
+
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          window.location.reload();
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+    })
+
+
+    $("#bda_selected_form").submit(function (e) {
+      // preventing from page reload and default actions
+
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      // make POST ajax call
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-select_bda' %}",
+        data: serializedData,
+        success: function (response) {
+          console.log(response)
+          window.location.reload();
+          alert("Record Submitted successfully")
+
+
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          window.location.reload();
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+    })
+  
+  
+    $("#enrollment_update_form").submit(function (e) {
+      // preventing from page reload and default actions
+
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      // make POST ajax call
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'admin-update_enrollment_details' %}",
+        data: serializedData,
+        success: function (response) {
+          window.location.reload();
+          alert("Record Submitted successfully")
+
+
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          window.location.reload();
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+    })
+
+
+    $("#addpaymentbtn").click((e) => {
+      e.preventDefault();
+      console.log($("#amount").val());
+
+      console.log($("#txnid").val());
+      console.log($("#paymentdate").val());
+
+      if ($("#amount").val() == undefined || $("#amount").val() == null || $("#amount").val().trim("").length == 0) {
+        alert("Enter amount")
+      } else {
+
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'admin-addtippayment' %}",
+          data: {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            amount: $("#amount").val(),
+            paymentdate: $("#paymentdate").val(),
+            txnid: $("#txnid").val(),
+            id: $("#empid").val(),
+          },
+          success: function (response) {
+            console.log(response)
+            window.location.reload();
+            alert("Record added successfully")
+
+
+          },
+          error: function (response) {
+            // alert the error if any error occured
+            window.location.reload();
+            alert(response["responseJSON"]["error"]);
+          }
+        })
+      }
+    })
+    $("#feedback_form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'admin-save_feedback' %}",
+            data: {
+              feedback_taxt: $('#feedback_taxt').val(),
+              appliedid: $('#appliedid').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            success: function () {
+              window.location.reload();
+                alert("feedback Added successfully");
+            },
+          error: function (response) {
+            // alert the error if any error occured
+            window.location.reload();
+            alert(response["responseJSON"]["error"]);
+          }
+        })
+    }
+    )
+  </script>
+
+</body>
+
+</html>

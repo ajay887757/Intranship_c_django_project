@@ -1,0 +1,75 @@
+<nav class="sidebar sidebar-offcanvas sidenav" id="sidebar">
+        <div class="top">
+          <div id="img">
+           <img src="/static/crtd_logo.png" alt="logo" id="myimg">
+         </div> 
+         <div class="items">
+           <p id="first">CRTD Technologies</p>
+         <p id="second">Inventing Better Future</p>
+         </div>
+         
+       </div>
+       <!-- <a href="sidebarn.html">Dashboard</a> -->
+       
+        
+       <a class="nav-link" href="{% url 'admin-drawer' 1 %}">
+        
+        <i class="fas fa-shield-alt dash"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+      
+      
+      
+         <button class="dropdown-btn job">
+          <i class="fas fa-suitcase dash"></i>
+           Jobs 
+           <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-container">
+           <a href="#">Selected</a>
+           <a href="#">Rejected</a>
+           <a href="#">Applied</a>
+         </div>
+        
+         
+         
+         <button class="dropdown-btn internship"  >
+           <i class="material-icons dash last2">
+          work_outline
+          </i>
+          Internships 
+           <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-container">
+          <a href="{% url 'internship_view' 4 %}">Applied</a>
+          <a href="{% url 'internship_view' 2 %}">Selected for an Interview</a>
+            <a href="{% url 'internship_view' 1 %}">Selected</a>
+            <a href="{% url 'internship_view' 3 %}">Rejected</a>
+  
+         </div>
+         
+         
+         <button class="dropdown-btn tip">
+          <span class="material-icons dash last2">
+            groups
+            </span>
+          CRTD TIP
+           <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-container">
+           <a href="{% url 'admin-tipstatus' 4  %}">Selected For an interview</a>
+           <a href="{% url 'admin-tipstatus' 2 %}">Rejected</a>
+           <a href="{% url 'admin-tipstatus' 3 %}">Selected</a>
+
+         </div>
+         <a href="{% url 'admin-drawer' 2 %}" style="font-size: 19px;">Tip Activation Code</a>
+         <a href="{% url 'admin-drawer' 5 %}" style="font-size: 19px;">Job Code</a>
+         <a href="{% url 'admin-voucher'  %}" style="font-size: 19px;">Vouchers </a>
+         <a href="{% url 'admin-drawer' 3 %}" >Passing Year</a>
+        
+           <a href="{% url 'admin-drawer' 4 %}" >College List</a>
+           <a href="{% url 'admin-all_job_profile'  %}" >All Job Profile</a>
+         
+       
+      </nav>
+      <script src="/static/index.js"></script>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/stylemain.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+<!-- materialIcons -->
+<script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script> 
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+<!-- google icons  -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+ .dash{
+   margin-right:6px;
+ }
+.acc{
+  font-size: 19px;
+    text-align: center;
+    color: #ededed;
+    margin-top: 6px;
+}
+</style>
+</head>
+<body>
+  <div class="container-scroller">
+
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+  <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button" data-toggle="offcanvas" onclick="navtoggler()" id="togglebtn">
+    
+    <i class="fas fa-bars mobile-nav-toggle"></i>
+  </button>
+</nav>
+<div class="page-body-wrapper d-flex frame">
+ 
+
+
+{% include "admin_temp/sidenav.html" %}
+
+<!-- end of sidebar  -->
+
+
+<div class="main" id='main'>
+  <div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-12 grid-margin">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex align-items-center dashboard-header flex-wrap mb-3 mb-sm-0">
+          <h5 class="mr-4 mb-0 font-weight-bold">Accounts Details</h5>
+          
+        </div>
+        <div class="d-flex">
+            {% if type == "total" %}
+            <form style="float:right;" method="POST" enctype="multipart/form-data" >{%csrf_token %}
+
+                <div style="float:right;">
+          
+                    <select id='cyear' name='cyear' class="btn btn-primary" onchange="this.form.submit()">
+                    <option {% if  year == 2021 %} selected {% endif %} class="btn btn-light" value= '2021'>2021</option>
+                    <option {% if  year == 2022 %} selected {% endif %} class="btn btn-light" value='2022'>2022</option>
+                    </select> 
+                  
+                  
+                </div>
+                
+                <div  id="head2"  style="float:right; margin-right:6px">
+                  {% comment %} 
+                  <form id="apply" method="POST" enctype="multipart/form-data" >{%csrf_token %} {% endcomment %}
+                  <select id='cmonth' name='cmonth' class="btn btn-primary" onchange="this.form.submit()">
+                  <option value='' class="btn btn-light"  disabled>--Select Month--</option>
+                  <option {% if  month == 1 %} selected {% endif %} class="btn btn-light" value= '1'>Janaury</option>
+                  <option {% if  month == 2 %} selected {% endif %} class="btn btn-light" value='2'>February</option>
+                  <option {% if  month == 3 %} selected {% endif %} class="btn btn-light"  value='3'>March</option>
+                  <option {% if  month == 4 %} selected {% endif %} class="btn btn-light"  value='4'>April</option>
+                  <option {% if  month == 5 %} selected {% endif %} class="btn btn-light"  value='5'>May</option>
+                  <option {% if  month == 6 %} selected {% endif %} class="btn btn-light"  value='6'>June</option>
+                  <option {% if  month == 7 %} selected {% endif %} class="btn btn-light"  value='7'>July</option>
+                  <option {% if  month == 8 %} selected {% endif %} class="btn btn-light"  value='8'>August</option>
+                  <option {% if  month == 9 %} selected {% endif %} class="btn btn-light"  value='9'>September</option>
+                  <option {% if  month == 10 %} selected {% endif %} class="btn btn-light"  value='10'>October</option>
+                  <option {% if  month == 11 %} selected {% endif %} class="btn btn-light" value='11'>November</option>
+                  <option {% if  month == 12 %} selected {% endif %}  class="btn btn-light"  value='12'>December</option>
+                  </select> 
+                
+                
+                  
+                </form>
+              </div>
+                </form>
+                {% endif %}
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col my-2">
+      
+        <div class="icon-card-primary"
+        style="background-color: rgb(40, 167, 69);"
+        >
+          <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <p class="font-weight-medium mb-0">Verified</p>
+              </div>
+              <div class="d-flex align-items-center mt-3 flex-wrap">
+                <h3 class="font-weight-normal mb-0 mr-2">{{verified}} </h3>
+              </div>
+              <small class="font-weight-medium d-block mt-2">
+                
+                <a href="{% url 'admin-accountslist' type 1 year month %}" style="text-decoration: none;color:white">{{type}} Verified</a>
+              </small>
+          </div>
+        </div>
+    </div>
+    <div class="col my-2">
+     
+      <div class="icon-card-success"
+      style="background-color: #a53910;"
+      >
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                <i class="fas fa-exclamation-circle ver" style="margin-top:6px;"></i>
+              </div>
+              <p class="font-weight-medium mb-0">Unverified</p>
+            </div>
+            <div class="d-flex align-items-center mt-3 flex-wrap">
+                <h3 class="font-weight-normal mb-0 mr-2">{{unverified}} </h3>
+               
+              </div>
+            <small class="font-weight-medium d-block mt-2">
+              
+              <a href="{% url 'admin-accountslist' type 0 year month %}" style="text-decoration: none;color:white">Unverified</a>
+
+            </small>
+        </div>
+      </div>
+    </div>
+    <div class="col my-2">
+     
+        <div class="icon-card-success"
+        style="background-color: #2b328e;"
+        >
+          <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                  <i class="fas fa-solid fa-user" style="margin-top:6px;"></i>
+                </div>
+                <p class="font-weight-medium mb-0">Registered </p>
+              </div>
+              <div class="d-flex align-items-center mt-3 flex-wrap">
+                  <h3 class="font-weight-normal mb-0 mr-2">{{Registered}} </h3>
+                 
+                </div>
+              <small class="font-weight-medium d-block mt-2">
+                 
+                <a href="{% url 'admin-accountslist' type 2 year month %}" style="text-decoration: none;color:white">{{type}} Registered</a>
+
+              </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+<script>
+  
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+
+// navbar toggler 
+// function navtoggler(){
+// let btn =document.getElementById('togglebtn');
+// let sidebar =document.getElementById('sidebar');
+// if (sidebar.style.display === 'none') {
+//     sidebar.style.display = 'block';
+//   } else {
+//     sidebar.style.display = 'none';
+//   }
+// // sidebar.style.display ='block';
+
+// }
+</script>
+<script src="/static/index.js"></script>
+</body>
+</html> 
+
+<!-- col-12 col-sm-6 col-md-3 grid-margin stretch-card -->

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Job Profile</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+        integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/static/jobsdata.css">
+    <!-- materialIcons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+
+    <!-- google icons  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/stylemain.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/a6103e5724.js" crossorigin="anonymous"></script>
+    <!-- materialIcons -->
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <style>
+        .main {
+            width: 80%;
+        }
+
+        .head {
+            font-size: 21px;
+            font-weight: 400;
+        }
+
+        .border-bottom {
+            padding: 9px;
+        }
+
+        .label {
+            font-size: 17px;
+        }
+
+        .add {
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 991px) {
+
+
+            .main {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-scroller">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row mynav justify-content-end">
+            <button class="navbar-toggler navbar-toggler-right align-self-center nvbtn" type="button"
+                data-toggle="offcanvas" onclick="navtoggler()" id="togglebtn">
+
+                <i class="fas fa-bars mobile-nav-toggle"></i>
+            </button>
+        </nav>
+        <div class="page-body-wrapper d-flex frame">
+
+            {% include "admin_temp/sidenav.html" %}
+            <div class="main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto mb-4">
+                            <div class="section-title d-flex justify-content-center align-items-center">
+                                <h3 class="mt-2 mr-2">All Job Profiles</h3>
+                                <i class="mt-2 fas fa-plus-circle add" data-toggle="modal"
+                                    data-target="#exampleModal"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="career-search mb-60">
+
+                                <div class="filter-result">
+                                    {% for profile in jobprofiles %}
+
+                                    <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
+                                        <div class="job-left  d-md-flex align-items-center flex-wrap">
+
+                                            <div class="job-content">
+                                                <h5 class="text-center text-md-left">{{profile.name}} </h5>
+                                                <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                                    <li class="mr-md-4">
+                                                        <!-- <i class="zmdi zmdi-pin mr-2"></i>  -->
+                                                        {% if profile.type == 1 %}
+                                                        Internship
+                                                        {% endif %}
+                                                        {% if profile.type == 2 %}
+                                                        Job
+                                                        {% endif %}
+                                                        {% if profile.type == 3 %}
+                                                        CRTD TIP
+                                                        {% endif %}
+                                                    </li>
+                                                    <li class="mr-md-4">
+                                                        <!-- <i class="zmdi zmdi-money mr-2"></i>  -->
+                                                        {% if profile.sub_type == 1 %}
+                                                        Technical
+                                                        {% endif %}
+                                                        {% if profile.sub_type == 2 %}
+                                                        HR
+                                                        {% endif %}
+                                                        {% if profile.sub_type == 3 %}
+                                                        OTHER
+                                                        {% endif %}
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="job-right my-4 flex-shrink-0">
+                                           
+                                           
+                                            
+                                        </div> -->
+                                        {% if profile.status == 1 %}
+                                        <button type="button" class="btn btn-success" style=" margin-left: 30%;">Active
+                                        </button>
+                                        {% endif %}
+                                        {% if profile.status == 0 %}
+                                        <button type="button" style="margin-left:30%;"
+                                            class="btn btn-danger">Inactive</button>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="new_user_form">
+        {% csrf_token %}
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="profile_name">Profile Name</label>
+                            <input type="text" name="profile_name" class="form-control" id="profile_name"
+                                placeholder="Full Stack Developer, JavaScript Developer etc.">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select class="form-control" name="type" data-live-search="true" id="type">
+
+                                <option selected>Select Type</option>
+                                <option value="2">Job</option>
+                                <option value="3">CRTD TIP</option>
+                                <option value="1">Internship</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+
+                            <label for="Sub_Type">Sub-Type</label>
+                            <select class="form-control" name="Sub_Type" data-live-search="true" id="Sub_Type">
+
+                                <option selected>Select Sub-Type</option>
+                                <option value="2">HR</option>
+                                <option value="1">Technical</option>
+                                <option value="3">OTHER</option>
+                            </select>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script>
+
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+
+
+
+    </script>
+
+</body>
+<script>
+    $(document).on("submit", "#new_user_form", function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: 'save_job/',
+            data: {
+                profile_name: $('#profile_name').val(),
+                type: $("#type").val(),
+                Sub_Type: $("#Sub_Type").val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            success: function () {
+                alert("Data Added successfully");
+                location.replace("admin-all_job_profile")
+            }
+        });
+    }
+    )
+</script>
+
+</html>

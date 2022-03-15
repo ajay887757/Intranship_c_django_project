@@ -1,0 +1,58 @@
+.icon-card-success {
+    background: #29c0b1;
+    color: #ffffff;
+}
+.card {
+    box-shadow: 5px 11px 23px -13px #e5e5e5;
+    -webkit-box-shadow: 5px 11px 23px -13px #e5e5e5;
+    -moz-box-shadow: 5px 11px 23px -13px #e5e5e5;
+    -ms-box-shadow: 5px 11px 23px -13px #e5e5e5;
+    border: 1px solid rgba(230, 230, 230, 0.41);
+    border-radius: 0.625rem;
+}
+.icon-card-primary {
+    background: #6201ed;
+    color: #ffffff;
+}
+.card .card-body {
+    padding: 1.25rem 1.25rem;
+}
+.icon-card-primary .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+.icon-card-success .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    text-align: center;
+
+}
+.icon-card-primary .badge {
+    padding: 0.4rem .725rem;
+    border-width: .5px;
+}
+.badge.badge-pill {
+    border-radius: 10rem;
+}
+.badge-outline-light {
+    color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+  }
+  .myicon{
+    width:20px;
+    height:20px;
+  }
+
+/* wrapper class after main  */
+.content-wrapper {
+    background: #fafafa;
+    padding: 1.1rem 2.5rem 2.5rem;
+    width: 100%;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}

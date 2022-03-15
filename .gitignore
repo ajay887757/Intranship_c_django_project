@@ -1,0 +1,6 @@
+.env
+*.env
+androidapi/__pycache__
+adminweb/__pycache__
+CRTD_TECHNOLOGIES_API/__pycache__
+
