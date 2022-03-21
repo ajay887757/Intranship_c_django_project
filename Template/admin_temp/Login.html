@@ -14,7 +14,8 @@
         <div class="title"><span>Login</span>
             <p id ="tag">CRTD TECHNOLOGIES</p>
         </div>
-        <form action="/admin-checklogin" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+        <form action="/admin-checklogin" method="post" enctype="application/x-www-form-urlencoded">
+          {% csrf_token %}
           <div class="row">
             <i class="fas fa-user"></i>
             <input type="text" name="emailid" id="emailid" placeholder="Email or Phone" required>

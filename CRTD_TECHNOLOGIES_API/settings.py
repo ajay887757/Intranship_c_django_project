@@ -82,13 +82,22 @@ WSGI_APPLICATION = 'CRTD_TECHNOLOGIES_API.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crtd',
+        'NAME': 'crtd_technology',
         'USER': 'root',
         'PASSWORD': 'Ajay@123',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
+
+
+# PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(PROJECT_DIR, 'yourdatabasename.db'),
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -151,7 +160,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT='https://crtdbucket.s3.ap-south-1.amazonaws.com/CRTD_TECHsite/index.jshttps://crtdbucket.s3.ap-south-1.amazonaws.com/CRTD_TECHsite/'
+
+
+# STATIC_ROOT='https://crtdbucket.s3.ap-south-1.amazonaws.com/CRTD_TECHsite/index.jshttps://crtdbucket.s3.ap-south-1.amazonaws.com/CRTD_TECHsite/'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "assets"),
     )

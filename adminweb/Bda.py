@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from adminweb.isajax import get_month_max, is_ajax
 from androidapi.models import Applied
-from django.http import  JsonResponse
+from django.http import  HttpResponse, JsonResponse
 from datetime import *
 from django.db.models import Q
 from django.utils import timezone
@@ -38,7 +38,10 @@ def get_bda_data(timemin,timemax,today_min,today_max,type,jobcode_type):
             totalselected=Alldata.filter(status=3).exclude(amount_paid=None).count()
             totalrejected=Alldata.filter(status=2).count()
             total_enrollment_expired=Alldata.filter(status=3,emp__regid=None,enroll_expire_date__lt=timezone.now()).count()
-            enrollmentpending=Alldata.filter(Q(status=3),Q(emp__regid=None),Q(enroll_expire_date__gt=timezone.now())).count()
+
+            # enrollmentpending=Alldata.filter(Q(status=3),Q(emp__regid=None),Q(enroll_expire_date__gt=timezone.now())).count()
+            enrollmentpending=Alldata.filter(Q(status=3),Q(emp__regid=None)).count()
+
             enrollmenthold=Alldata.filter(Q(status=6)).count()
             selected_for_enrollment=Alldata.filter(Q(status=3),Q(enroll_expire_date__gt=timezone.now()),Q(emp__regid=None)).count()
             interview_going_on_bda=Alldata.filter(status=7).count()
@@ -48,7 +51,9 @@ def get_bda_data(timemin,timemax,today_min,today_max,type,jobcode_type):
         elif type=="Rejected":
             return Alldata.filter(status=2)
         elif type=="Enrollment Pending":
-            return Alldata.filter(Q(status=3),Q(emp__regid=None),Q(enroll_expire_date__gt=timezone.now()))
+            return Alldata.filter(Q(status=3),Q(emp__regid=None))
+            # return Alldata.filter(Q(status=3),Q(emp__regid=None),Q(enroll_expire_date__gt=timezone.now()))
+
         elif type=="Enrollment Hold":
             return Alldata.filter(Q(status=6))
         elif type=="Selected":
@@ -73,7 +78,7 @@ def bda_candidate_list(request,month,year,type,hiring_type):
         return render(request,'admin_temp/candidatelist.html',{'res':data,"title":type+" Bda"})    
 
     except Exception as e:
-        pass
+        return HttpResponse("Except")
 
 def update_bda_enrollment_details(request):
     try:
